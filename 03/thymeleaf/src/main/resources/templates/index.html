@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Nhà tuyển dụng</h3>
+<p>
+  <a th:href="@{/employer/create}">
+    Thêm nhà tuyển dụng
+  </a>
+</p>
+
+<table id = "customers">
+  <thead>
+  <tr>
+    <th>Tên nhà tuyển dụng</th>
+    <th>Email</th>
+    <th>Đỉa Chỉ</th>
+    <th>Sửa</th>
+    <th>Xoá</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="row,rowStat : ${employers}">
+    <td th:text="${row.getName()}"></td>
+    <td th:text="${row.getEmail()}"></td>
+    <td th:text="${row.getAddress()}"></td>
+    <td><a th:href="@{/employer/{id}/edit(id=${row.getId()})}">edit</a></td>
+    <td><a th:href="@{/employer/{id}/delete(id=${row.getId()})}">delete</a></td>
+  </tr>
+  </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
